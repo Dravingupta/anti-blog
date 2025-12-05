@@ -1,6 +1,5 @@
 const Image = require('../models/Image');
-const fs = require('fs');
-const path = require('path');
+const cloudinary = require('../cloudinary');
 
 // @desc    Upload an image
 // @route   POST /api/images/upload
@@ -11,18 +10,41 @@ const uploadImage = async (req, res) => {
             return res.status(400).json({ message: 'No file uploaded' });
         }
 
-        const { filename, path: filePath } = req.file;
-        const url = `/uploads/${filename}`;
+        // Upload to Cloudinary using buffer
+        const uploadStream = cloudinary.uploader.upload_stream(
+            {
+                folder: 'anti-blog',
+                resource_type: 'image',
+            },
+            async (error, result) => {
+                if (error) {
+                    console.error('Cloudinary upload error:', error);
+                    return res.status(500).json({ message: 'Error uploading to Cloudinary' });
+                }
 
-        const image = new Image({
-            filename,
-            url,
-            altText: req.body.altText || filename,
-            uploadedBy: 'Admin'
-        });
+                try {
+                    const image = new Image({
+                        filename: req.file.originalname,
+                        url: result.secure_url,
+                        cloudinaryId: result.public_id,
+                        altText: req.body.altText || req.file.originalname,
+                        uploadedBy: 'Admin'
+                    });
 
-        const savedImage = await image.save();
-        res.status(201).json({ ok: true, image: savedImage });
+                    const savedImage = await image.save();
+                    res.status(201).json({ ok: true, image: savedImage });
+                } catch (err) {
+                    console.error('Database save error:', err);
+                    // Delete from Cloudinary if database save fails
+                    await cloudinary.uploader.destroy(result.public_id);
+                    res.status(500).json({ message: 'Error saving image data' });
+                }
+            }
+        );
+
+        // Pipe the buffer to Cloudinary
+        const bufferStream = require('stream').Readable.from(req.file.buffer);
+        bufferStream.pipe(uploadStream);
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server Error' });
@@ -57,15 +79,15 @@ const deleteImage = async (req, res) => {
             return res.status(404).json({ message: 'Image not found' });
         }
 
-        // Delete file from filesystem
-        const filePath = path.join(__dirname, '..', 'uploads', image.filename);
-        if (fs.existsSync(filePath)) {
-            fs.unlinkSync(filePath);
+        // Delete from Cloudinary
+        if (image.cloudinaryId) {
+            await cloudinary.uploader.destroy(image.cloudinaryId);
         }
 
         await image.deleteOne();
         res.json({ message: 'Image deleted' });
     } catch (err) {
+        console.error(err);
         res.status(500).json({ message: 'Server Error' });
     }
 };
@@ -75,3 +97,4 @@ module.exports = {
     getImages,
     deleteImage
 };
+

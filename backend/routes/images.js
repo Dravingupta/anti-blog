@@ -5,18 +5,9 @@ const path = require('path');
 const { uploadImage, getImages, deleteImage } = require('../controllers/imagesController');
 const protect = require('../middleware/authMiddleware');
 
-// Multer config
-const storage = multer.diskStorage({
-    destination(req, file, cb) {
-        cb(null, 'uploads/');
-    },
-    filename(req, file, cb) {
-        cb(null, `${Date.now()}-${file.originalname}`);
-    }
-});
-
+// Multer config - use memory storage for Cloudinary
 const upload = multer({
-    storage,
+    storage: multer.memoryStorage(),
     fileFilter: function (req, file, cb) {
         const filetypes = /jpeg|jpg|png|webp|gif/;
         const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
