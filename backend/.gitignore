@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.local
+
+# Uploads folder (images will be stored here)
+# Comment this out if you want to track uploads in git
+uploads/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db

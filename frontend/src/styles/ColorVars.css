@@ -1,0 +1,49 @@
+/* ========================================
+   Full Dark Matte Palette
+   Deep, Rich, Sophisticated
+   ======================================== */
+
+:root {
+    /* ===== Core Palette ===== */
+    --bg: #0D0D0D;
+    /* True dark - main background */
+    --surface: #1A1A1A;
+    /* Dark grey - card surfaces */
+    --surface-alt: #262626;
+    /* Lighter grey - hover states */
+
+    --text-primary: #E8E9EB;
+    /* Soft off-white - primary text */
+    --text-muted: #A0A4A8;
+    /* Muted grey - secondary text */
+
+    --primary: #D4876F;
+    /* Muted terracotta - primary actions */
+    --accent: #A89F91;
+    /* Warm taupe - accents */
+
+    --border: #2A2A2A;
+    /* Subtle dark border */
+
+    /* ===== Matte Accents ===== */
+    --highlight: #C9A882;
+    /* Muted gold */
+    --success: #7FA284;
+    /* Sage green */
+    --warning: #C9A05F;
+    /* Muted amber */
+    --danger: #B87B7B;
+    /* Dusty rose */
+    --info: #7B9BAC;
+    /* Muted teal */
+
+    /* ===== Shadows ===== */
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    /* Deep shadow */
+    --shadow-color-md: rgba(0, 0, 0, 0.6);
+    /* Deeper shadow */
+
+    /* ===== Focus States ===== */
+    --focus-ring: rgba(212, 135, 111, 0.4);
+    /* Muted terracotta focus */
+}
