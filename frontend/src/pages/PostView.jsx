@@ -41,7 +41,6 @@ const PostView = () => {
         }
     }, [id]);
 
-    // Calculate reading time (rough estimate)
     const calculateReadingTime = (content) => {
         const wordsPerMinute = 200;
         const textLength = content?.replace(/<[^>]*>/g, '').split(/\s+/).length || 0;
@@ -58,7 +57,6 @@ const PostView = () => {
         <PublicLayout>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
 
-                {/* Back Button */}
                 <Link
                     to="/"
                     className="inline-flex items-center gap-2 text-text-muted hover:text-primary transition-all mb-8 sm:mb-12 group px-3 py-2 sm:px-4 rounded-xl hover:bg-surface-alt text-sm sm:text-base"
@@ -67,16 +65,12 @@ const PostView = () => {
                     <span className="font-medium">Back to Home</span>
                 </Link>
 
-                {/* Two Column Layout */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
 
-                    {/* Main Content - Left Column */}
                     <article className="lg:col-span-8 space-y-6 sm:space-y-8">
 
-                        {/* Article Card with Header */}
                         <div className="bg-surface rounded-2xl sm:rounded-3xl shadow-soft-md border border-[var(--border)] overflow-hidden">
 
-                            {/* Article Header */}
                             <div className="p-6 sm:p-10 md:px-14 md:pt-12 md:pb-8 border-b border-[var(--border)] bg-gradient-to-br from-surface-alt/50 to-surface">
                                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-text-primary mb-6 sm:mb-8 leading-[1.2] sm:leading-[1.15]">
                                     {post.title}
@@ -109,7 +103,6 @@ const PostView = () => {
                                 </div>
                             </div>
 
-                            {/* Article Content */}
                             <div className="p-6 sm:p-10 md:px-14 md:py-12">
                                 <div
                                     className="prose prose-lg sm:prose-xl max-w-none
