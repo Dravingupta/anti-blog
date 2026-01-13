@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const postSchema = new mongoose.Schema({
     title: { type: String, required: true },
     slug: { type: String, required: true, unique: true },
-    content: { type: String, required: true }, // HTML from editor
+    content: { type: String, required: true }, 
     excerpt: { type: String },
     featuredImage: { type: mongoose.Schema.Types.ObjectId, ref: 'Image' },
     tags: [String],
