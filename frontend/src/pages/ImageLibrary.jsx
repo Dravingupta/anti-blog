@@ -41,13 +41,11 @@ const ImageLibrary = ({ selectMode = false, onSelect }) => {
 
     const Content = () => (
         <div className="space-y-8">
-            {/* Upload Zone - Always visible now */}
             <div className="bg-[rgba(39,35,32,0.03)] border-dashed border-2 border-[rgba(242,239,234,0.06)] rounded-2xl p-8 text-center hover:border-primary/30 transition-colors">
                 <h3 className="text-lg font-semibold text-text-primary mb-4">Upload New Images</h3>
                 <ImageUploader onUploadSuccess={(newImage) => setImages([newImage, ...images])} />
             </div>
 
-            {/* Search Bar */}
             <div className="relative max-w-md">
                 <input
                     type="text"
@@ -59,7 +57,6 @@ const ImageLibrary = ({ selectMode = false, onSelect }) => {
                 <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted" />
             </div>
 
-            {/* Grid */}
             {loading ? (
                 <div className="flex justify-center py-20">
                     <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-primary"></div>

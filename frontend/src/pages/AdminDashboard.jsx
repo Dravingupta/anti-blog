@@ -51,7 +51,6 @@ const AdminDashboard = () => {
         </div>
     );
 
-    // Mobile Card View Component
     const PostCard = ({ post }) => (
         <div className="bg-surface rounded-xl p-4 border border-[rgba(242,239,234,0.03)] hover:border-primary/20 transition-all">
             <div className="flex gap-3 mb-3">
@@ -114,17 +113,14 @@ const AdminDashboard = () => {
 
     return (
         <AdminLayout>
-            {/* Stats Row */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-10">
                 <StatCard icon={FaFileAlt} label="Total Posts" value={posts.length} color="bg-primary" />
                 <StatCard icon={FaImages} label="Total Images" value={images.length} color="bg-accent" />
                 <StatCard icon={FaPen} label="Drafts" value={posts.filter(p => p.isDraft).length} color="bg-highlight" />
             </div>
 
-            {/* Quick Actions */}
 
 
-            {/* Posts List - Desktop Table */}
             <div className="hidden md:block bg-surface rounded-2xl shadow-soft-sm border border-[rgba(242,239,234,0.03)] overflow-hidden">
                 <div className="px-6 py-5 border-b border-[rgba(242,239,234,0.03)] flex items-center justify-between">
                     <h2 className="text-lg font-semibold text-text-primary">Recent Posts</h2>
@@ -185,7 +181,6 @@ const AdminDashboard = () => {
                 </div>
             </div>
 
-            {/* Posts List - Mobile Cards */}
             <div className="md:hidden space-y-4">
                 <div className="flex items-center justify-between mb-4">
                     <h2 className="text-lg font-semibold text-text-primary">Recent Posts</h2>
