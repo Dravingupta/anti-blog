@@ -3,7 +3,6 @@ const router = express.Router();
 const { getPosts, getPost, createPost, updatePost, deletePost } = require('../controllers/postsController');
 const protect = require('../middleware/authMiddleware');
 
-// Optional auth middleware - sets req.user if token exists, but doesn't block request
 const optionalAuth = (req, res, next) => {
     const token = req.headers.authorization?.split(' ')[1];
     if (token) {

@@ -5,7 +5,6 @@ const path = require('path');
 const { uploadImage, getImages, deleteImage } = require('../controllers/imagesController');
 const protect = require('../middleware/authMiddleware');
 
-// Multer config - use memory storage for Cloudinary
 const upload = multer({
     storage: multer.memoryStorage(),
     fileFilter: function (req, file, cb) {
