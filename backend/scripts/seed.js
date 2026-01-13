@@ -8,12 +8,10 @@ const seedData = async () => {
         await mongoose.connect(MONGO_URI);
         console.log('MongoDB Connected');
 
-        // Clear existing data
         await Post.deleteMany({});
         await Image.deleteMany({});
         console.log('Data cleared');
 
-        // Create sample image
         const image = await Image.create({
             filename: 'sample.jpg',
             url: 'https://via.placeholder.com/800x400',
@@ -23,7 +21,6 @@ const seedData = async () => {
 
         console.log('Image created:', image);
 
-        // Create sample post
         try {
             await Post.create({
                 title: 'Welcome to the New Blog',
