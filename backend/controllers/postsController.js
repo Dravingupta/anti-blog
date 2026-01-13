@@ -1,14 +1,10 @@
 const Post = require('../models/Post');
 
-// @desc    Get all posts (Public - excludes drafts, Admin - shows all)
-// @route   GET /api/posts
-// @access  Public
+
 const getPosts = async (req, res) => {
     try {
-        // Check if user is admin (req.user is set by authMiddleware)
         const isAdmin = req.user ? true : false;
 
-        // Public users only see published posts, admins see all
         const filter = isAdmin ? {} : { isDraft: false };
 
         const posts = await Post.find(filter)
@@ -20,15 +16,12 @@ const getPosts = async (req, res) => {
     }
 };
 
-// @desc    Get single post
-// @route   GET /api/posts/:id
-// @access  Public (but drafts only accessible to admin)
+
 const getPost = async (req, res) => {
     try {
         const { id } = req.params;
         let post;
 
-        // Check if id is ObjectId
         if (id.match(/^[0-9a-fA-F]{24}$/)) {
             post = await Post.findById(id).populate('featuredImage');
         } else {
@@ -39,7 +32,6 @@ const getPost = async (req, res) => {
             return res.status(404).json({ message: 'Post not found' });
         }
 
-        // If post is draft, only admin can view
         if (post.isDraft && !req.user) {
             return res.status(403).json({ message: 'This post is not published yet' });
         }
@@ -50,9 +42,7 @@ const getPost = async (req, res) => {
     }
 };
 
-// @desc    Create post
-// @route   POST /api/posts
-// @access  Admin
+
 const createPost = async (req, res) => {
     try {
         const { title, slug, content, excerpt, featuredImage, tags, isDraft } = req.body;
@@ -77,9 +67,6 @@ const createPost = async (req, res) => {
     }
 };
 
-// @desc    Update post
-// @route   PUT /api/posts/:id
-// @access  Admin
 const updatePost = async (req, res) => {
     try {
         const { title, slug, content, excerpt, featuredImage, tags, isDraft } = req.body;
@@ -104,9 +91,6 @@ const updatePost = async (req, res) => {
     }
 };
 
-// @desc    Delete post
-// @route   DELETE /api/posts/:id
-// @access  Admin
 const deletePost = async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
