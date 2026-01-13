@@ -1,9 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { ADMIN_USERNAME, ADMIN_PASSWORD, JWT_SECRET } = require('../config');
 
-// @desc    Admin Login
-// @route   POST /api/auth/login
-// @access  Public
+
 const login = (req, res) => {
     const { username, password } = req.body;
 
