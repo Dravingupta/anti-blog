@@ -3,12 +3,10 @@ const cors = require('cors');
 const { PORT } = require('./config');
 const connectDB = require('./db');
 
-// Connect to Database
 connectDB();
 
 const app = express();
 
-// Middleware
 app.use(cors({
     origin: [
         'http://localhost:5173',
@@ -18,12 +16,10 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/posts', require('./routes/posts'));
 app.use('/api/images', require('./routes/images'));
 
-// Error Handler
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).json({ message: 'Something went wrong!' });
