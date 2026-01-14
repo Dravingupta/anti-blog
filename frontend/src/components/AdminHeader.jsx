@@ -9,7 +9,6 @@ const AdminHeader = ({ onToggleSidebar, isSidebarOpen }) => {
     const [isProfileOpen, setIsProfileOpen] = useState(false);
     const dropdownRef = useRef(null);
 
-    // Close dropdown when clicking outside
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -20,7 +19,6 @@ const AdminHeader = ({ onToggleSidebar, isSidebarOpen }) => {
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
-    // Determine Page Title
     const getPageTitle = () => {
         const path = location.pathname;
         if (path === '/admin') return 'Dashboard';
@@ -35,9 +33,7 @@ const AdminHeader = ({ onToggleSidebar, isSidebarOpen }) => {
     return (
         <header className="sticky top-0 z-30 px-4 sm:px-6 py-3 sm:py-4 bg-surface-alt border-b border-[rgba(255,255,255,0.05)] shadow-[0_4px_20px_rgba(0,0,0,0.15)] flex items-center justify-between transition-all duration-300">
 
-            {/* Left: Mobile Menu + Title */}
             <div className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0">
-                {/* Mobile Menu Toggle */}
                 <button
                     onClick={onToggleSidebar}
                     className="lg:hidden w-10 h-10 rounded-xl bg-surface hover:bg-primary/10 flex items-center justify-center text-text-primary hover:text-primary transition-colors"
@@ -45,7 +41,6 @@ const AdminHeader = ({ onToggleSidebar, isSidebarOpen }) => {
                     <HiMenu className="text-xl" />
                 </button>
 
-                {/* Page Title */}
                 <div className="flex flex-col min-w-0">
                     <h2 className="text-base sm:text-xl font-semibold text-text-primary tracking-tight truncate">
                         {getPageTitle()}
@@ -58,10 +53,8 @@ const AdminHeader = ({ onToggleSidebar, isSidebarOpen }) => {
                 </div>
             </div>
 
-            {/* Right: Utilities */}
             <div className="flex items-center gap-2 sm:gap-4">
 
-                {/* Quick Action: New Post */}
                 <Link
                     to="/admin/create"
                     className="hidden sm:flex items-center gap-2 bg-primary text-[var(--bg)] rounded-xl px-4 py-2 text-sm font-medium hover:scale-105 hover:shadow-lg hover:shadow-primary/20 transition-all duration-200"
@@ -70,7 +63,6 @@ const AdminHeader = ({ onToggleSidebar, isSidebarOpen }) => {
                     <span>New Post</span>
                 </Link>
 
-                {/* Mobile: New Post Icon Only */}
                 <Link
                     to="/admin/create"
                     className="sm:hidden w-10 h-10 rounded-xl bg-primary text-[var(--bg)] flex items-center justify-center hover:scale-105 transition-all"
@@ -78,7 +70,6 @@ const AdminHeader = ({ onToggleSidebar, isSidebarOpen }) => {
                     <HiPlus className="text-lg" />
                 </Link>
 
-                {/* Profile Dropdown */}
                 <div className="relative" ref={dropdownRef}>
                     <button
                         onClick={() => setIsProfileOpen(!isProfileOpen)}
@@ -93,7 +84,6 @@ const AdminHeader = ({ onToggleSidebar, isSidebarOpen }) => {
                         </div>
                     </button>
 
-                    {/* Dropdown Menu */}
                     {isProfileOpen && (
                         <div className="absolute right-0 mt-2 w-48 bg-surface border border-[rgba(255,255,255,0.05)] rounded-xl shadow-soft-md py-1 animate-[scaleIn_0.15s_ease-out] origin-top-right overflow-hidden">
                             <div className="px-4 py-3 border-b border-[rgba(255,255,255,0.05)]">
@@ -102,7 +92,6 @@ const AdminHeader = ({ onToggleSidebar, isSidebarOpen }) => {
                             </div>
 
                             <div className="py-1">
-                                {/* Empty for now - can add settings later */}
                             </div>
 
                             <div className="border-t border-[rgba(255,255,255,0.05)] py-1">
