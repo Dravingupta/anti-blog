@@ -22,7 +22,6 @@ const ImageCard = ({ image, onSelect, onDelete, selectMode }) => {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
 
-                {/* Overlay Actions */}
                 <div className="absolute inset-0 bg-[rgba(0,0,0,0.45)] opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-3 backdrop-blur-[2px]">
                     {selectMode ? (
                         <div className="bg-primary text-[var(--bg)] p-3 rounded-full shadow-lg transform scale-0 group-hover:scale-100 transition-transform">
