@@ -225,7 +225,6 @@ const PostEditor = () => {
                         </div>
                     </div>
 
-                    {/* Meta Settings Column */}
                     <div className="space-y-6">
                         <div className="bg-surface-alt p-6 space-y-6 rounded-2xl shadow-soft-sm border border-[rgba(255,255,255,0.06)]">
                             <h3 className="font-semibold text-text-primary pb-4 border-b border-[rgba(255,255,255,0.06)]">Post Settings</h3>
