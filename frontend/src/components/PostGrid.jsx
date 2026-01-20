@@ -7,7 +7,6 @@ import { FaClock } from 'react-icons/fa';
 const PostGrid = ({ posts, title = "Latest Blogs", showCount = true, limit }) => {
     const displayPosts = limit ? posts.slice(0, limit) : posts;
 
-    // Calculate read time based on content length
     const calculateReadTime = (content) => {
         if (!content) return 1;
         const wordsPerMinute = 200;
