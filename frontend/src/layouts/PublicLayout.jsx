@@ -8,7 +8,7 @@ const PublicLayout = ({ children }) => {
     const { user } = useAuth();
 
     return (
-        <div className="min-h-screen bg-background font-sans text-text-primary flex flex-col">
+        <div className="diary-shell min-h-screen font-sans text-text-primary flex flex-col overflow-x-hidden">
             {user ? <AdminHeader /> : <Header />}
             <main className="flex-1">
                 {children}

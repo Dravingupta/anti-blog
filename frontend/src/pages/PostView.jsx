@@ -48,8 +48,8 @@ const PostView = () => {
         return minutes;
     };
 
-    if (loading) return <PublicLayout><div className="text-center py-20 text-text-muted">Loading...</div></PublicLayout>;
-    if (!post) return <PublicLayout><div className="text-center py-20 text-text-muted">Post not found</div></PublicLayout>;
+    if (loading) return <PublicLayout><div className="text-center py-20 text-text-muted">Opening the entry...</div></PublicLayout>;
+    if (!post) return <PublicLayout><div className="text-center py-20 text-text-muted">This page could not be found.</div></PublicLayout>;
 
     const readingTime = calculateReadingTime(post.content);
 
@@ -59,26 +59,27 @@ const PostView = () => {
 
                 <Link
                     to="/"
-                    className="inline-flex items-center gap-2 text-text-muted hover:text-primary transition-all mb-8 sm:mb-12 group px-3 py-2 sm:px-4 rounded-xl hover:bg-surface-alt text-sm sm:text-base"
+                    className="inline-flex items-center gap-2 border-b border-transparent px-1 py-2 text-sm text-text-muted transition-all hover:border-primary/50 hover:text-primary sm:mb-12 sm:text-base"
                 >
                     <FaArrowLeft className="group-hover:-translate-x-1 transition-transform text-sm sm:text-base" />
-                    <span className="font-medium">Back to Home</span>
+                    <span className="font-medium">All entries</span>
                 </Link>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
 
                     <article className="lg:col-span-8 space-y-6 sm:space-y-8">
 
-                        <div className="bg-surface rounded-2xl sm:rounded-3xl shadow-soft-md border border-[var(--border)] overflow-hidden">
+                        <div className="paper-surface overflow-hidden border border-[var(--border)] shadow-soft-md">
 
-                            <div className="p-6 sm:p-10 md:px-14 md:pt-12 md:pb-8 border-b border-[var(--border)] bg-gradient-to-br from-surface-alt/50 to-surface">
-                                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-text-primary mb-6 sm:mb-8 leading-[1.2] sm:leading-[1.15]">
+                            <div className="border-b border-[var(--border)] bg-[linear-gradient(135deg,rgba(237,226,210,0.75),rgba(255,250,242,0.7))] p-6 sm:p-10 md:px-14 md:pt-12 md:pb-8">
+                                <p className="mb-5 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-primary">From Dravin's Diary</p>
+                                <h1 className="font-display text-4xl font-bold tracking-tight text-text-primary mb-7 leading-[1.08] sm:text-5xl lg:text-6xl sm:mb-8">
                                     {post.title}
                                 </h1>
 
                                 <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-xs sm:text-sm">
                                     <div className="flex items-center gap-2 sm:gap-3">
-                                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center font-bold text-sm sm:text-base text-white shadow-lg">
+                                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-primary/30 bg-surface flex items-center justify-center font-display font-bold text-sm sm:text-base text-primary">
                                             D
                                         </div>
                                         <div>
@@ -106,14 +107,14 @@ const PostView = () => {
                             <div className="p-6 sm:p-10 md:px-14 md:py-12">
                                 <div
                                     className="prose prose-lg sm:prose-xl max-w-none
-                                    prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-text-primary
+                                    prose-headings:font-display prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-text-primary
                                     prose-h1:text-3xl sm:prose-h1:text-4xl prose-h1:mb-6 sm:prose-h1:mb-8 prose-h1:mt-8 sm:prose-h1:mt-12 prose-h1:pb-3 sm:prose-h1:pb-4 prose-h1:border-b prose-h1:border-[var(--border)]
                                     prose-h2:text-2xl sm:prose-h2:text-3xl prose-h2:mb-4 sm:prose-h2:mb-6 prose-h2:mt-6 sm:prose-h2:mt-10
                                     prose-h3:text-xl sm:prose-h3:text-2xl prose-h3:mb-3 sm:prose-h3:mb-5 prose-h3:mt-5 sm:prose-h3:mt-8
                                     prose-p:text-text-primary prose-p:leading-[1.75] sm:prose-p:leading-[1.85] prose-p:mb-6 sm:prose-p:mb-8 prose-p:text-base sm:prose-p:text-lg
                                     prose-a:text-primary prose-a:no-underline hover:prose-a:text-accent prose-a:transition-colors prose-a:font-medium prose-a:border-b prose-a:border-primary/30 hover:prose-a:border-accent
                                     prose-img:rounded-2xl sm:prose-img:rounded-3xl prose-img:shadow-soft-md prose-img:my-8 sm:prose-img:my-12 prose-img:border prose-img:border-[var(--border)]
-                                    prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:bg-gradient-to-r prose-blockquote:from-primary/10 prose-blockquote:to-transparent prose-blockquote:py-4 sm:prose-blockquote:py-6 prose-blockquote:px-5 sm:prose-blockquote:px-8 prose-blockquote:rounded-r-xl sm:prose-blockquote:rounded-r-2xl prose-blockquote:not-italic prose-blockquote:text-text-primary prose-blockquote:my-6 sm:prose-blockquote:my-10 prose-blockquote:text-base sm:prose-blockquote:text-lg prose-blockquote:font-medium
+                                    prose-blockquote:border-l-2 prose-blockquote:border-primary prose-blockquote:bg-primary/5 prose-blockquote:py-4 sm:prose-blockquote:py-6 prose-blockquote:px-5 sm:prose-blockquote:px-8 prose-blockquote:rounded-r-xl sm:prose-blockquote:rounded-r-2xl prose-blockquote:not-italic prose-blockquote:text-text-primary prose-blockquote:my-6 sm:prose-blockquote:my-10 prose-blockquote:text-base sm:prose-blockquote:text-lg prose-blockquote:font-medium
                                     prose-code:bg-primary/10 prose-code:rounded-lg prose-code:px-1.5 sm:prose-code:px-2 prose-code:py-0.5 sm:prose-code:py-1 prose-code:text-accent prose-code:text-sm sm:prose-code:text-base prose-code:font-mono prose-code:border prose-code:border-primary/20
                                     prose-pre:bg-surface-alt prose-pre:rounded-xl sm:prose-pre:rounded-2xl prose-pre:p-4 sm:prose-pre:p-6 prose-pre:my-6 sm:prose-pre:my-10 prose-pre:border prose-pre:border-[var(--border)] prose-pre:shadow-inner
                                     prose-ul:text-text-primary prose-ul:my-6 sm:prose-ul:my-8 prose-ul:text-base sm:prose-ul:text-lg
@@ -128,8 +129,8 @@ const PostView = () => {
                         </div>
 
                         {/* Share Section */}
-                        <div className="bg-surface-alt/50 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-[var(--border)]">
-                            <h3 className="text-lg sm:text-xl font-bold text-text-primary mb-3 sm:mb-4">Share this article</h3>
+                        <div className="border-y border-[var(--border)] bg-surface-alt/45 p-6 sm:p-8">
+                            <h3 className="font-display text-2xl font-bold text-text-primary mb-3 sm:mb-4">Pass it on</h3>
                             <div className="flex flex-row gap-3 justify-center sm:justify-start">
                                 <button
                                     onClick={() => {
@@ -182,11 +183,11 @@ const PostView = () => {
                         <div className="text-center pt-4 sm:pt-8">
                             <Link
                                 to="/"
-                                className="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-primary to-accent text-white rounded-xl sm:rounded-2xl font-bold hover:scale-105 hover:shadow-lg transition-all text-sm sm:text-base"
+                                className="inline-flex items-center gap-2 sm:gap-3 border border-primary bg-primary px-6 py-3 text-sm font-bold text-surface transition-all hover:-translate-y-0.5 hover:bg-transparent hover:text-primary sm:px-8 sm:py-4 sm:text-base"
                             >
                                 <FaArrowLeft className="text-sm sm:text-base" />
-                                <span className="hidden sm:inline">Explore More Articles</span>
-                                <span className="sm:hidden">More Articles</span>
+                                <span className="hidden sm:inline">Return to the diary</span>
+                                <span className="sm:hidden">All entries</span>
                             </Link>
                         </div>
                     </article>
@@ -195,14 +196,14 @@ const PostView = () => {
                     <aside className="lg:col-span-4">
                         <div className="sticky top-24 space-y-6 sm:space-y-8">
                             {/* Author Card */}
-                            <div className="bg-gradient-to-br from-surface via-surface-alt to-surface rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-[var(--border)] shadow-soft-sm">
+                            <div className="paper-surface border border-[var(--border)] p-6 sm:p-8 shadow-soft-sm">
                                 <div className="flex flex-col items-center text-center">
-                                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center font-bold text-2xl sm:text-3xl text-white shadow-lg mb-3 sm:mb-4">
+                                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-primary/30 bg-surface-alt flex items-center justify-center font-display font-bold text-2xl sm:text-3xl text-primary mb-3 sm:mb-4">
                                         D
                                     </div>
-                                    <h3 className="text-lg sm:text-xl font-bold text-text-primary mb-1 sm:mb-2">Dravin</h3>
+                                    <h3 className="font-display text-2xl font-bold text-text-primary mb-1 sm:mb-2">Dravin</h3>
                                     <p className="text-xs sm:text-sm text-text-muted leading-relaxed">
-                                        Crafting stories that inspire and inform. Passionate about technology, design, and innovation.
+                                        Keeping a record of ideas, experiments, and the small details worth holding on to.
                                     </p>
                                 </div>
                             </div>
